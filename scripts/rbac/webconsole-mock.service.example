@@ -1,0 +1,20 @@
+# Template only. No installer executes this or creates accounts/permissions.
+[Unit]
+Description=free5GC Webconsole with opt-in mock deployment approval
+After=network.target mongod.service
+[Service]
+Type=simple
+User=free5gc-webconsole
+Group=free5gc-webconsole
+WorkingDirectory=/opt/free5gc/webconsole
+ExecStart=/opt/free5gc/webconsole/bin/webconsole
+EnvironmentFile=/etc/free5gc/webconsole-mock.env
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/free5gc/webconsole/log
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target
