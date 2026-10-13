@@ -4,6 +4,12 @@
 
 操作、初始化、MCP、角色遷移與測試方式請見 [Webconsole README](webconsole/README-RBAC.md)。
 
+## 真實 Codex Agent Team
+
+新增 `/agent-team`：在 Webconsole 直接輸入 Prompt，真實 Codex Coordinator 分派 Installer/Troubleshooter，顯示每個角色真正取得的 MCP 工具清單、選擇、參數、授權與結果。使用既有 Codex ChatGPT 登入，不另需 API key。安裝工具只有 plan-only handler，不執行系統安裝。
+
+操作与限制見 [Agent Team README](webconsole/README-AGENT-TEAM.md)，[實際模型／MCP 驗收](webconsole/docs/team-evidence/README.md)。既有 demo launcher 已同時啟用 Team；完整 Webconsole 可使用 `bash scripts/rbac/agent-team-webconsole.sh` opt-in。原 `/deployments` 保持 mock 部署工作，與真實 Team 決策頁分開。
+
 ## 本機試用
 
 使用已安裝的 Go/Node/Yarn/MongoDB，不執行 quick-setup.sh：
@@ -21,6 +27,7 @@ python3 tools/mock_demo.py --state-dir /tmp/free5gc-rbac-demo-local
 
 | 檔案 | 用途 |
 |---|---|
+| `scripts/rbac/agent-team-webconsole.sh` | opt-in 真實 Codex Team，安裝工具僅產生計畫 |
 | `scripts/rbac/build.sh` | 僅建置 Webconsole、bootstrap、demo 與前端 |
 | `scripts/rbac/mock-webconsole.sh` | opt-in mock 設定；固定目前 checkout commit/腳本 SHA256 |
 | `scripts/rbac/webconsole-mock.service.example` | 非 root systemd 範本，沒有自動安裝 |
